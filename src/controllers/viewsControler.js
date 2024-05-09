@@ -1,7 +1,7 @@
 import productsModel from '../dao/models/products.js';
 import cartsModel from '../dao/models/carts.js';
 import userModel from '../dao/models/users.js';
-import response from '../middeleweres/responses.js';
+import response from '../config/responses.js';
 
 const viewsController = {
 

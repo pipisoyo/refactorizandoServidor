@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import ProductManager from "../dao/services/productManager.js";
-import { auth } from '../middeleweres/auth.js';
+import { auth } from '../config/auth.js';
 
 const realTimeProducts = Router();
 const productManager = new ProductManager();

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import passport from "passport";
-import { auth } from "../middeleweres/auth.js";
+import { auth } from "../config/auth.js";
 import sessionController from "../controllers/sessionControler.js";
 const sessionsRouter = Router();
 

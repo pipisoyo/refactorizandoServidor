@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { auth , authUser} from '../middeleweres/auth.js';
+import { auth , authUser} from '../config/auth.js';
 import viewsController from '../controllers/viewsControler.js';
 
 const viewRoutes = Router();

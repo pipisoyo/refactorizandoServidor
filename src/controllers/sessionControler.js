@@ -1,6 +1,6 @@
 import { createHash } from '../utils.js';
 import userModel from '../dao/models/users.js';
-import response from '../middeleweres/responses.js'
+import response from '../config/responses.js'
 
 const sessionController = {
     logout: (req, res) => {

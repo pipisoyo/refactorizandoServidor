@@ -1,5 +1,5 @@
 import CartsManager from "../dao/services/cartManager.js";
-import response from "../middeleweres/responses.js";
+import response from "../config/responses.js";
 
 const cartsManager = new CartsManager();
 

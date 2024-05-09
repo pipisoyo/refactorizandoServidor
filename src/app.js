@@ -4,14 +4,14 @@ import express from "express";
 import handlebars from 'express-handlebars'
 import __dirname from "./utils.js";
 import initilizePassport from "./config/passport.config.js";
-import middlewares from './config/middlewares.js';
+import appMiddlewares from './config/appMiddlewares.js';
 import { app } from './config/server.js';
 import { productsRouter, cartsRoutes, sessionsRouter, viewesRoutes } from './routes/routes.js'
 import initSocket from './socket.js';
 import realTimeProducts from "./routes/realTimeProductsRoute.js";
 
 //Middlewares
-app.use(middlewares);
+app.use(appMiddlewares);
 
 //Rutes
 app.use("/api/realtimeproducts", realTimeProducts);

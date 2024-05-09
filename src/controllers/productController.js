@@ -1,6 +1,6 @@
 import ProductManager from "../dao/services/productManager.js";
 import { io } from '../config/server.js'
-import responses from "../middeleweres/responses.js";
+import responses from "../config/responses.js";
 
 const productManager = new ProductManager();
 
