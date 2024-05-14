@@ -2,6 +2,9 @@ const socket = io();
 
 let user;
 
+/**
+ * Función que se ejecuta al cargar la página.
+ */
 window.onload = () => {
   Swal.fire({
     title: 'Identifícate',
@@ -21,6 +24,9 @@ const chatbox = document.getElementById("chatbox");
 const log = document.getElementById("log");
 const sendButton = document.getElementById("sendButton");
 
+/**
+ * Escucha el evento de clic en el botón de enviar y envía el mensaje al servidor.
+ */
 sendButton.addEventListener('click', () => {
   const message = chatbox.value.trim();
   if (message !== "") {
@@ -29,6 +35,10 @@ sendButton.addEventListener('click', () => {
   }
 });
 
+/**
+ * Escucha los mensajes recibidos del servidor y los muestra en el chat.
+ * @param {Array} data - Datos de los mensajes recibidos.
+ */
 socket.on('messageLogs', data => {
   let messages = "";
   data.forEach(msg => {

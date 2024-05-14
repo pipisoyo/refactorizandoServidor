@@ -1,4 +1,9 @@
 const form = document.getElementById('registerForm');
+
+/**
+ * Maneja el envío del formulario de registro de usuario.
+ * @param {Event} e - Evento de envío del formulario.
+ */
 form.addEventListener('submit', e => {
     e.preventDefault();
 
@@ -25,12 +30,13 @@ form.addEventListener('submit', e => {
     })
     .then((data) => {
         if (data && data.error) {
-            //eliminar ant errores
+            // Eliminar errores anteriores
             const existingErrorMessage = document.querySelector('#emailError .error-message');
             if (existingErrorMessage) {
                 existingErrorMessage.remove();
             }
 
+            // Mostrar el nuevo mensaje de error
             const errorMessage = document.createElement('div');
             errorMessage.textContent = data.message; 
             errorMessage.style.color = 'red';

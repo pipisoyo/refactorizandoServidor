@@ -5,8 +5,12 @@ import { auth } from '../config/auth.js';
 const realTimeProducts = Router();
 const productManager = new ProductManager();
 
-realTimeProducts.get('/', auth , async (req, res) => {
- 
+/**
+ * Ruta para obtener la lista de productos en tiempo real.
+ * @name GET /real-time-products
+ * @function
+ */
+realTimeProducts.get('/', auth, async (req, res) => {
   try {
     const products = await productManager.getAll(31, 0);
     res.render('realTimeProducts', { products: products.result.docs });

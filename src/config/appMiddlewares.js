@@ -4,15 +4,18 @@ import MongoStore from "connect-mongo";
 import passport from "passport";
 import config from "../config.js";
 
-const app = express();
-
 const DB_URL = config.mongo_url;
 
-// Middleware 
+/**
+ * Aplicación Express para el servidor web.
+ */
+const app = express();
+
+// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//Sesión MongoD (DB)
+// Sesión MongoDB (Base de Datos)
 app.use(session({
   store: new MongoStore({
     mongoUrl: DB_URL,
@@ -23,8 +26,8 @@ app.use(session({
   saveUninitialized: false
 }));
 
-//Init Passport 
-app.use(passport.initialize())
-app.use(passport.session())
+// Inicialización de Passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 export default app;

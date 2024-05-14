@@ -5,6 +5,9 @@ import ProductManager from "./dao/services/productManager.js";
 const productManager = new ProductManager();
 const msg = [];
 
+/**
+ * Inicializa el socket para la comunicación en tiempo real.
+ */
 const initSocket = () => {
   io.on('connection', socket => {
 
@@ -18,8 +21,12 @@ const initSocket = () => {
       }
     });
     
-    console.log("Mensageria conectada")
+    console.log("Mensajería conectada");
 
+    /**
+     * Maneja el evento de recepción de mensajes.
+     * @param {Object} data - Datos del mensaje recibido.
+     */
     socket.on('message', async (data) => {
       const message = new messagesModel({
         email: data.user,
@@ -37,7 +44,7 @@ const initSocket = () => {
       io.emit('messageLogs', msg);
     });
 
-  })
+  });
 }
 
 export default initSocket;

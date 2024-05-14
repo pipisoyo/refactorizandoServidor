@@ -3,13 +3,25 @@ import cartsModel from '../dao/models/carts.js';
 import userModel from '../dao/models/users.js';
 import response from '../config/responses.js';
 
+/**
+ * Controlador para la gestión de las vistas y renderizado de páginas.
+ */
 const viewsController = {
 
-//Renderizar Chat
+    /**
+     * Renderiza la vista del chat.
+     * @param {object} req - Objeto de solicitud.
+     * @param {object} res - Objeto de respuesta.
+     */
     renderChat: (req, res) => {
         res.render('chat');
     },
 
+    /**
+     * Renderiza la vista de productos con paginación.
+     * @param {object} req - Objeto de solicitud.
+     * @param {object} res - Objeto de respuesta.
+     */
     renderProducts: async (req, res) => {
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 10;
@@ -49,7 +61,11 @@ const viewsController = {
         }
     },
 
-//Renderizar Carrito
+    /**
+     * Renderiza la vista del carrito de compras.
+     * @param {object} req - Objeto de solicitud.
+     * @param {object} res - Objeto de respuesta.
+     */
     renderCart: async (req, res) => {
         const cid = req.params.cid;
 
@@ -68,22 +84,38 @@ const viewsController = {
         }
     },
 
-//Renderizar Registro
+    /**
+     * Renderiza la vista de registro de usuario.
+     * @param {object} req - Objeto de solicitud.
+     * @param {object} res - Objeto de respuesta.
+     */
     renderRegister: (req, res) => {
         res.render('register');
     },
 
-//Renderizar Login
+    /**
+     * Renderiza la vista de inicio de sesión.
+     * @param {object} req - Objeto de solicitud.
+     * @param {object} res - Objeto de respuesta.
+     */
     renderLogin: (req, res) => {
         res.render('login');
     },
 
-//Renderizar Profile
+    /**
+     * Renderiza la vista del perfil de usuario.
+     * @param {object} req - Objeto de solicitud.
+     * @param {object} res - Objeto de respuesta.
+     */
     renderProfile: (req, res) => {
         res.render('profile', { user: req.session.user });
     },
 
-//Renderizar Restaurar Contraseña
+    /**
+     * Renderiza la vista para restaurar contraseña.
+     * @param {object} req - Objeto de solicitud.
+     * @param {object} res - Objeto de respuesta.
+     */
     renderRestore: (req, res) => {
         res.render('restore');
     }

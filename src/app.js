@@ -1,5 +1,6 @@
-//import localRouterProducts from "./routes/localProductsRoute.js";
-//import localCartsRoute from "./routes/localCartsRoute.js";
+/**
+ * Importación de módulos y configuraciones necesarias.
+ */
 import express from "express";
 import handlebars from 'express-handlebars'
 import __dirname from "./utils.js";
@@ -10,10 +11,16 @@ import { productsRouter, cartsRoutes, sessionsRouter, viewesRoutes } from './rou
 import initSocket from './socket.js';
 import realTimeProducts from "./routes/realTimeProductsRoute.js";
 
-//Middlewares
+// Middlewares
+/**
+ * Middlewares de la aplicación.
+ */
 app.use(appMiddlewares);
 
-//Rutes
+// Rutas
+/**
+ * Definición de las rutas de la aplicación.
+ */
 app.use("/api/realtimeproducts", realTimeProducts);
 app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
@@ -24,13 +31,21 @@ app.use(viewesRoutes);
 //app.use("/api/products/", localRouterProducts);
 //app.use("/api/carts/", localCartsRoute);
 
-//Handlebars
+// Handlebars
+/**
+ * Configuración de Handlebars para las vistas.
+ */
 app.engine('handlebars', handlebars.engine())
 app.set('view engine', 'handlebars');
 
-//Passport - autenticación
+// Passport - autenticación
+/**
+ * Inicialización de Passport para autenticación.
+ */
 initilizePassport();
 
-//soket (realtime)
+// Socket (realtime)
+/**
+ * Inicialización de Socket para comunicación en tiempo real.
+ */
 initSocket();
-

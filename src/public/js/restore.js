@@ -1,12 +1,15 @@
-
 const form = document.getElementById("restoreForm");
 
+/**
+ * Maneja el envío del formulario de restablecimiento de contraseña.
+ * @param {Event} e - Evento de envío del formulario.
+ */
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const data = new FormData(form);
   const obj = {};
-  console.log(data);
   data.forEach((value, key) => (obj[key] = value));
+  
   fetch("/api/sessions/restore", {
     method: "POST",
     body: JSON.stringify(obj),
@@ -15,10 +18,10 @@ form.addEventListener("submit", (e) => {
     },
   }).then((response) => {
     if (response.status === 200) {
-      alert("Contraseña reestablecida con exito");
+      alert("Contraseña restablecida con éxito");
       window.location.replace("/login");
     } else {
-      alert("Algo salio mal");
+      alert("Algo salió mal");
     }
   });
 });

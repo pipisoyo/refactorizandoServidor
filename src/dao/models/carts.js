@@ -1,22 +1,24 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
-const collection = "carts"
+// Nombre de la colección en la base de datos
+const collection = "carts";
 
+// Definición del esquema de la colección "carts"
 const schema = new mongoose.Schema({
     products: [{
         product: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "products",
-            require: true
+            required: true
         },
         quantity: {
             type: Number,
-            require: true
+            required: true
         }
     }]
+});
 
-})
+// Modelo de mongoose para la colección "carts" basado en el esquema definido
+const cartsModel = mongoose.model(collection, schema);
 
-const cartsModel = mongoose.model(collection, schema)
-
-export default cartsModel
+export default cartsModel;

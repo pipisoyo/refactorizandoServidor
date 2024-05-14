@@ -4,8 +4,12 @@ import { localCartsManager } from "../dao/services/localCartsManager.js";
 const cartsManager = new localCartsManager();
 const localCartsRoute = Router();
 
+/**
+ * Ruta para crear un nuevo carrito.
+ * @name POST /carts
+ * @function
+ */
 localCartsRoute.post("/", async (req, res) => {
-
   try {
     const newCart = await cartsManager.createCart();
     res.status(201).json(newCart);
@@ -15,8 +19,12 @@ localCartsRoute.post("/", async (req, res) => {
   }
 });
 
+/**
+ * Ruta para obtener los productos de un carrito por ID.
+ * @name GET /carts/:cid
+ * @function
+ */
 localCartsRoute.get("/:cid", async (req, res) => {
-
   try {
     const { cid } = req.params;
     const cart = await cartsManager.getCartById(cid);
@@ -27,7 +35,6 @@ localCartsRoute.get("/:cid", async (req, res) => {
     }
 
     const products = cart.products;
-
     res.status(200).json(products);
   } catch (error) {
     console.error("Error al obtener los productos del carrito:", error);
@@ -35,8 +42,12 @@ localCartsRoute.get("/:cid", async (req, res) => {
   }
 });
 
-localCartsRoute.post("/:cid/product/:pid/", async (req, res) => {
-
+/**
+ * Ruta para agregar un producto a un carrito.
+ * @name POST /carts/:cid/product/:pid
+ * @function
+ */
+localCartsRoute.post("/:cid/product/:pid", async (req, res) => {
   try {
     const { cid, pid } = req.params;
     const cart = await cartsManager.getCartById(cid);

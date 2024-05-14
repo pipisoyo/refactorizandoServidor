@@ -2,7 +2,7 @@ import passport from "passport";
 import local from "passport-local";
 import userModel from "../dao/models/users.js";
 import { createHash, isValidPassword } from "../utils.js";
-import CartsManager from "../dao/services/cartManager.js";
+import {CartsManager} from "../dao/services/cartManager.js";
 import GitHubStrategy from "passport-github2";
 import { Types } from 'mongoose';
 import config from "../config.js";
@@ -15,7 +15,9 @@ const cartsManager = new CartsManager();
 
 const admin = { username: config.adminUser , password: config.adminPassword };
 
-//Inicializar Passport
+/**
+ * Inicializa Passport con las estrategias de autenticación.
+ */
 const initializePassport = () => {
 
   // Estrategia de registro de usuarios

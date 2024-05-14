@@ -1,8 +1,17 @@
 import { createHash } from '../utils.js';
 import userModel from '../dao/models/users.js';
-import response from '../config/responses.js'
+import response from '../config/responses.js';
 
+/**
+ * Controlador para la gestión de sesiones de usuario.
+ */
 const sessionController = {
+
+    /**
+     * Cierra la sesión del usuario.
+     * @param {object} req - Objeto de solicitud.
+     * @param {object} res - Objeto de respuesta.
+     */
     logout: (req, res) => {
         req.session.destroy((err) => {
             if (err) {
@@ -12,15 +21,30 @@ const sessionController = {
         });
     },
 
+    /**
+     * Registra a un nuevo usuario.
+     * @param {object} req - Objeto de solicitud.
+     * @param {object} res - Objeto de respuesta.
+     */
     register: async (req, res) => {
         response.successResponse(res, 201, 'Usuario registrado exitosamente', null);
     },
 
+    /**
+     * Maneja el fallo en el registro de usuario.
+     * @param {object} req - Objeto de solicitud.
+     * @param {object} res - Objeto de respuesta.
+     */
     failRegister: async (req, res) => {
         console.log('error');
         response.errorResponse(res, 400, 'Falló el registro');
     },
 
+    /**
+     * Inicia sesión de usuario.
+     * @param {object} req - Objeto de solicitud.
+     * @param {object} res - Objeto de respuesta.
+     */
     login: async (req, res) => {
         if (!req.user) return response.errorResponse(res, 400, 'Error en el inicio de sesión');
         
@@ -35,15 +59,30 @@ const sessionController = {
         response.successResponse(res, 200, 'Inicio de sesión exitoso', { user: req.user });
     },
 
+    /**
+     * Maneja el fallo en el inicio de sesión.
+     * @param {object} req - Objeto de solicitud.
+     * @param {object} res - Objeto de respuesta.
+     */
     failLogin: async (req, res) => {
         console.log('error');
         response.errorResponse(res, 400, 'Fallo en el inicio de sesión');
     },
 
+    /**
+     * Inicia la autenticación con GitHub.
+     * @param {object} req - Objeto de solicitud.
+     * @param {object} res - Objeto de respuesta.
+     */
     githubLogin: async (req, res) => {
         response.successResponse(res, 200, 'Autenticación con GitHub iniciada', null);
     },
 
+    /**
+     * Callback de autenticación con GitHub.
+     * @param {object} req - Objeto de solicitud.
+     * @param {object} res - Objeto de respuesta.
+     */
     githubCallback: async (req, res) => {
         req.session.user = {
             first_name: req.user.first_name,
@@ -56,6 +95,11 @@ const sessionController = {
         res.redirect('/products');
     },
 
+    /**
+     * Restaura la contraseña de un usuario.
+     * @param {object} req - Objeto de solicitud.
+     * @param {object} res - Objeto de respuesta.
+     */
     restorePassword: async (req, res) => {
         const { email, password } = req.body;
         const user = await userModel.findOne({ email });
@@ -71,6 +115,11 @@ const sessionController = {
         response.successResponse(res, 200, 'Contraseña actualizada correctamente', null);
     },
 
+    /**
+     * Obtiene el usuario actualmente autenticado.
+     * @param {object} req - Objeto de solicitud.
+     * @param {object} res - Objeto de respuesta.
+     */
     getCurrentUser: async (req, res) => {
         if (req.session.user) {
             response.successResponse(res, 200, 'Usuario autenticado', { user: req.session.user });

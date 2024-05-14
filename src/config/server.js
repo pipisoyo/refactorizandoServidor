@@ -7,6 +7,9 @@ const app = express();
 const PORT = config.port;
 const DB_URL = config.mongo_url;
 
+/**
+ * Conecta a la base de datos MongoDB.
+ */
 const connectMongoDB = async () => {
   const dataBase = 'ecommerce';
   try {
@@ -18,9 +21,12 @@ const connectMongoDB = async () => {
   }
 }
 
-connectMongoDB()
+connectMongoDB();
 
-const server = app.listen(PORT, () => console.log("Server listening in", PORT))
-const io = new Server(server)
-console.log("config",config)
+const server = app.listen(PORT, () => console.log("Servidor escuchando en", PORT));
+const io = new Server(server);
+
+/**
+ * Exporta la aplicación Express y el servidor de Socket.IO.
+ */
 export { app, io };

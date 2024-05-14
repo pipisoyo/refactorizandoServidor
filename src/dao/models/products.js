@@ -1,45 +1,50 @@
 import mongoose from 'mongoose';
-import mongoosePaginate from 'mongoose-paginate-v2'
+// @ts-ignore
+import mongoosePaginate from 'mongoose-paginate-v2';
 
-const collection = "products"
+// Nombre de la colección en la base de datos
+const collection = "products";
 
+// Definición del esquema de la colección "products"
 const schema = new mongoose.Schema({
-
-    title :{
-        type:String,
-        require:true
+    title: {
+        type: String,
+        required: true
     },
-    description :{
-        type:String,
-        require:true
+    description: {
+        type: String,
+        required: true
     },
-    price :{
-        type:Number,
-        require:true
+    price: {
+        type: Number,
+        required: true
     },
-    code :{
-        type:String,
-        require:true
-    }, 
-    stock :{
-        type:Number,
-        require:true
-    }, 
-    status :{
-        type:Boolean,
-        require:true
+    code: {
+        type: String,
+        required: true
     },
-    category :{
-        type:String,
-        require:true
+    stock: {
+        type: Number,
+        required: true
     },
-    thumbnails :{
-        type:[String],
-        require:true
+    status: {
+        type: Boolean,
+        required: true
+    },
+    category: {
+        type: String,
+        required: true
+    },
+    thumbnails: {
+        type: [String],
+        required: true
     }
-})
+});
 
+// Agregar plugin de paginación a mongoose para el esquema
 schema.plugin(mongoosePaginate);
+
+// Modelo de mongoose para la colección "products" basado en el esquema definido
 const productsModel = mongoose.model(collection, schema);
 
-export default productsModel
+export default productsModel;

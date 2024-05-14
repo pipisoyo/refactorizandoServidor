@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Router } from "express";
 import { localProductManager } from "../dao/services/localProductManager.js";
 import { io } from '../app.js';

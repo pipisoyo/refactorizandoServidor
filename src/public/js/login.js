@@ -1,5 +1,9 @@
 const form = document.getElementById("loginForm");
 
+/**
+ * Maneja el envío del formulario de inicio de sesión.
+ * @param {Event} e - Evento de envío del formulario.
+ */
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const data = new FormData(form);
