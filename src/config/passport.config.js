@@ -2,7 +2,7 @@ import passport from "passport";
 import local from "passport-local";
 import userModel from "../dao/models/users.js";
 import { createHash, isValidPassword } from "../utils.js";
-import {CartsManager} from "../dao/services/cartManager.js";
+import CartsManager from "../dao/services/cartManager.js";
 import GitHubStrategy from "passport-github2";
 import { Types } from 'mongoose';
 import config from "../config.js";
